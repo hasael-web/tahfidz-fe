@@ -1,0 +1,7 @@
+1. create halaqoh -> done
+2. update halaqoh :
+note :
+ - jika ada data yang tidak jadi di update maka jika user mengklik submit akan memberikan data sebelum nya
+
+note :
+data to update halaqoh -> nama halaqoh,tahun ajaran, nama guru, nama anggota,status

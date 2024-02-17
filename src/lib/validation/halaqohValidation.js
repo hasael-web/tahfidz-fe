@@ -25,3 +25,26 @@ export const useHalaqohValidation = () => {
       mode: "all",
    });
 };
+
+
+const schemaToUpdate = yup.object({
+   nama_halaqoh: yup.string(),
+   tahun_ajaran: yup.string(),
+   guruId: yup.string(),
+   siswaIds: yup.array().of(yup.number()),
+   status: yup.boolean()
+})
+
+export const useHalaqohValidationToUpdate = () => {
+   // const initialValues = {
+   //    nama_halaqoh: "",
+   //    passtahun_ajaranword: null,
+   //    guruId: null,
+   //    status: false,
+   // }
+
+   return useForm({
+      resolver: yupResolver(schemaToUpdate),
+      mode: "all"
+   })
+}

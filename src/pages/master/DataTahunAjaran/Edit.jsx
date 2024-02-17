@@ -8,7 +8,7 @@ import InputCustom from "../../../components/atoms/InputCustom";
 
 const EditTahunAjaran = () => {
   const router = useNavigate();
-  const navigation = useNavigate()
+  const navigation = useNavigate();
 
   return (
     <>

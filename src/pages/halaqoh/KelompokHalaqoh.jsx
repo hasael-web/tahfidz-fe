@@ -21,25 +21,28 @@ import { IoEyeOutline } from "react-icons/io5";
 import { BsDownload } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { getAllHalaqoh } from "../../lib/api/halaqoh";
+import { useAuth } from "../../contexts/AuthContext";
 
 const KelompokHalaqoh = () => {
   const router = useNavigate();
-  const [loading,setLoading] = useState(false)
-  const [data,setData] = useState()
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState();
 
-  const fetchDataHolawoh = async() => {
-    setLoading(true)
+  const fetchDataHolawoh = async () => {
+    setLoading(true);
     try {
-      const response = await getAllHalaqoh()
-      setData(response.halaqoh)
-      setLoading(false)
+      const response = await getAllHalaqoh();
+      setData(response.halaqoh);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
-  }
-  useEffect(()=> {
-    fetchDataHolawoh()
-  }, [])
+  };
+  // const context = useAuth();
+
+  useEffect(() => {
+    fetchDataHolawoh();
+  }, []);
 
   console.log(data);
 
@@ -77,14 +80,13 @@ const KelompokHalaqoh = () => {
           color="#000"
           borderRadius={4}
           fontWeight="400"
-          size="sm"
-        >
+          size="sm">
           <Icon as={BsDownload} __css={{ marginRight: "8px" }} w={4} h={4} />
           Download
         </Button>
       </Flex>
       <TableCustom
-      isLoading={loading}
+        isLoading={loading}
         thead={[
           "#",
           "Nama Halaqoh",
@@ -94,10 +96,9 @@ const KelompokHalaqoh = () => {
           "Status",
           "Aksi",
         ]}
-        tbody={
-          data?.map((item,idx)=> (
+        tbody={data?.map((item, idx) => (
           <Tr key={idx}>
-            <Td>{idx  + 1}</Td>
+            <Td>{idx + 1}</Td>
             <Td>{item?.nama_halaqoh}</Td>
             <Td>{item?.tahun_ajaran?.nama_tahun_ajaran}</Td>
             <Td>{item?.nama_guru}</Td>
@@ -114,8 +115,7 @@ const KelompokHalaqoh = () => {
                   alignItems: "center",
                   width: "fit-content",
                   gap: "5px",
-                }}
-              >
+                }}>
                 <Icon as={IoEyeOutline} w={3} h={3} />
                 {item?.siswa.length} Siswa
               </Badge>
@@ -145,23 +145,22 @@ const KelompokHalaqoh = () => {
                         fill="black"
                       />
                     </Icon>
-                  }
-                ></MenuButton>
+                  }></MenuButton>
                 <MenuList>
                   <MenuItem
                     onClick={() =>
                       router(
                         "/halaqoh/kelompok-halaqoh/detail-kelompok-halaqoh"
                       )
-                    }
-                  >
+                    }>
                     Detail
                   </MenuItem>
                   <MenuItem
                     onClick={() =>
-                      router("/halaqoh/kelompok-halaqoh/edit-kelompok-halaqoh")
-                    }
-                  >
+                      router(
+                        `/halaqoh/kelompok-halaqoh/edit-kelompok-halaqoh/${item?.id}`
+                      )
+                    }>
                     Edit
                   </MenuItem>
                   <MenuItem>Delete</MenuItem>
@@ -169,8 +168,7 @@ const KelompokHalaqoh = () => {
               </Menu>
             </Td>
           </Tr>
-          ))
-        }
+        ))}
       />
     </>
   );

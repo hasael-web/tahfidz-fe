@@ -218,7 +218,7 @@ function RoutePage() {
         }
       />
       <Route
-        path="/halaqoh/kelompok-halaqoh/edit-kelompok-halaqoh"
+        path="/halaqoh/kelompok-halaqoh/edit-kelompok-halaqoh/:id"
         element={
           <ProtectedPage>
             <EditKelompokHalaqoh />

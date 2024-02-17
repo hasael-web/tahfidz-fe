@@ -46,11 +46,11 @@ export const getDetailUser = async (id) => {
 };
 
 export const addUser = async (formData) => {
-  return await API.post("/users" ,formData);
+  return await API.post("/users", formData);
 };
 
-export const updateUser = async (formData,id) => {
-  return await API.put(`/users/${id}` ,formData);
+export const updateUser = async (formData, id) => {
+  return await API.put(`/users/${id}`, formData);
 };
 
 export const deleteUser = async (id) => {
